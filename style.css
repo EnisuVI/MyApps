@@ -1,109 +1,304 @@
-/* Import de ta police personnalisée */
 @font-face {
-    font-family: 'PorscheDesign';
-    src: url('assets/fonts/DesignSystemEW01.ttf') format('ttf');
+    font-family: 'DesignSystem';
+    src: url('assets/fonts/DesignSystem.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
-    --bg-color: #0a0a0a;
-    --card-bg: #1a1a1a;
-    --text-main: #ffffff;
-    --text-secondary: #888888;
-    --border-radius: 18px;
-    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --bg: #0d0f10;
+    --surface: #131618;
+    --surface-hover: #1a1d20;
+    --border: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(255, 255, 255, 0.12);
+    --text: #e8eaed;
+    --text-muted: #4a5058;
+    --text-dim: #2e333a;
+    --accent-green: #00e676;
+    --accent-blue: #4fc3f7;
+    --accent-purple: #b388ff;
+    --font: 'DesignSystem', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html, body {
+    height: 100%;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: 'Segoe UI', Roboto, sans-serif; /* Fallback */
-    margin: 0;
-    padding: 40px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-/* Header style Porsche */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* ─── HEADER ─────────────────────────────────────────── */
+
 header {
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 56px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13, 15, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .brand {
-    font-family: 'PorscheDesign', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    text-transform: lowercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
 }
 
-/* Grille de 3 colonnes max */
+.brand-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 8px var(--accent-green);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.header-meta {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ─── MAIN ───────────────────────────────────────────── */
+
+main {
+    flex: 1;
+    padding: 72px 32px;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ─── GRID ───────────────────────────────────────────── */
+
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 40px;
-    width: 100%;
-    max-width: 900px; /* Force le passage à la ligne après 3 colonnes de 250px-300px */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
 }
 
-/* Bloc Application */
+/* ─── APP ITEM ───────────────────────────────────────── */
+
 .app-item {
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    animation: fadeUp 0.5s var(--ease) both;
+}
+
+.app-item:nth-child(1) { animation-delay: 0.05s; }
+.app-item:nth-child(2) { animation-delay: 0.1s; }
+.app-item:nth-child(3) { animation-delay: 0.15s; }
+.app-item:nth-child(4) { animation-delay: 0.2s; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .app-card {
-    background-color: var(--card-bg);
-    width: 100%;
-    aspect-ratio: 1 / 1; /* Carré parfait */
-    border-radius: var(--border-radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px 10px 0 0;
+    aspect-ratio: 4 / 3;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #333;
-    transition: var(--transition);
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 24px;
+    position: relative;
     overflow: hidden;
+    transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.app-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, var(--card-accent, var(--accent-blue)));
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+}
+
+.app-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    height: 1px;
+    width: 40%;
+    background: linear-gradient(to left, transparent, var(--card-accent, var(--accent-blue)));
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+}
+
+.app-item:hover .app-card {
+    background: var(--surface-hover);
+    border-color: var(--border-hover);
+}
+
+.app-item:hover .app-card::before,
+.app-item:hover .app-card::after {
+    opacity: 1;
+}
+
+.app-item[data-app="drive"] .app-card   { --card-accent: var(--accent-blue); }
+.app-item[data-app="status"] .app-card  { --card-accent: var(--accent-green); }
+.app-item[data-app="mail"] .app-card    { --card-accent: var(--accent-purple); }
+
+.app-icon {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 28px;
+    height: 28px;
+    opacity: 0.15;
+    transition: opacity 0.3s var(--ease);
+}
+
+.app-item:hover .app-icon {
+    opacity: 0.35;
+}
+
+.app-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .app-title {
-    font-family: 'PorscheDesign', sans-serif;
-    font-size: 1.2rem;
-    color: var(--text-main);
+    font-family: var(--font);
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
 }
 
-.app-logo {
-    width: 60%;
-    height: auto;
-    object-fit: contain;
+/* ─── FOOTER STRIP ───────────────────────────────────── */
+
+.app-footer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-hover);
+    border-radius: 0 0 10px 10px;
+    padding: 11px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s var(--ease);
+    margin-top: -1px;
+}
+
+.app-item:hover .app-footer {
+    background: var(--surface-hover);
 }
 
 .app-domain {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-family: 'Segoe UI', sans-serif;
-}
-
-/* Effet au survol */
-.app-item:hover .app-card {
-    transform: scale(1.05);
-    border-color: #555;
-    background-color: #222;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    transition: color 0.2s;
 }
 
 .app-item:hover .app-domain {
-    color: var(--text-main);
+    color: var(--text);
 }
 
-/* Responsive pour mobile */
+.app-arrow {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    transition: color 0.2s, transform 0.3s var(--ease);
+}
+
+.app-item:hover .app-arrow {
+    color: var(--text-muted);
+    transform: translate(2px, -2px);
+}
+
+/* ─── PAGE FOOTER ────────────────────────────────────── */
+
+footer {
+    padding: 24px 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-text {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+
 @media (max-width: 600px) {
+    header { padding: 0 20px; }
+    main { padding: 48px 20px; }
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
+    .app-card { padding: 16px; }
+    .app-title { font-size: 0.85rem; }
 }

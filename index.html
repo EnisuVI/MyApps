@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyApps - EnisuVI</title>
+    <title>MyApps — EnisuVI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <div class="brand">MyApps</div>
+        <div class="brand">
+            <span class="brand-dot"></span>
+            MyApps
+        </div>
+        <span class="header-meta">apps.enisuvi.cloud</span>
     </header>
 
-    <main class="app-grid">
-        
-        <a href="https://drive.enisuvi.cloud" target="_blank" class="app-item">
-            <div class="app-card">
-                <span class="app-title">MyDrive</span>
+    <main>
+        <p class="section-label">Applications</p>
+        <div class="app-grid">
+
+            <a href="https://drive.enisuvi.cloud" target="_blank" class="app-item" data-app="drive">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <span class="app-title">MyDrive</span>
                 </div>
-            <div class="app-domain">drive.enisuvi.cloud</div>
-        </a>
+                <div class="app-footer">
+                    <span class="app-domain">drive.enisuvi.cloud</span>
+                    <span class="app-arrow">↗</span>
+                </div>
+            </a>
 
-        <a href="https://status.enisuvi.cloud" target="_blank" class="app-item">
-            <div class="app-card">
-                <span class="app-title">Status</span>
-            </div>
-            <div class="app-domain">status.enisuvi.cloud</div>
-        </a>
+            <a href="https://status.enisuvi.cloud" target="_blank" class="app-item" data-app="status">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <span class="app-title">Status</span>
+                </div>
+                <div class="app-footer">
+                    <span class="app-domain">status.enisuvi.cloud</span>
+                    <span class="app-arrow">↗</span>
+                </div>
+            </a>
 
-        </main>
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-text">EnisuVI © 2026</span>
+    </footer>
 
 </body>
 </html>
