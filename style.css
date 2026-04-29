@@ -1,142 +1,119 @@
-/* Import de ta police personnalisée (Porsche) */
+/* IMPORT DE LA POLICE TTF */
 @font-face {
     font-family: 'PorscheDesign';
-    src: url('assets/fonts/DesignSystemEW01.woff2') format('woff2');
+    /* Assure-toi que le fichier s'appelle EXACTEMENT comme ça dans ton dossier /fonts */
+    src: url('./fonts/DesignSystemEW01.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 :root {
-    --bg-color: #050505; /* Noir très profond */
-    --card-bg: #141414; /* Gris très foncé pour les cartes */
-    --text-main: #ffffff;
-    --text-secondary: #777777; /* Gris plus discret */
-    --status-green: #22c55e; /* Couleur du point online */
-    --border-radius: 16px;
-    --card-border: 1px solid rgba(255, 255, 255, 0.08); /* Bordure subtile */
-    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --bg-color: #000000;
+    --card-bg: #111111; /* Gris très sombre pour le contraste */
+    --card-border: 1px solid #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #555555; /* Gris foncé pour les domaines */
+    --porsche-font: 'PorscheDesign', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    margin: 0;
-    padding: 0;
+    color: var(--text-primary);
+    font-family: sans-serif; /* Fallback */
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Header style Porsche - En haut à gauche */
 header {
-    width: 100%;
-    padding: 30px 40px;
-    box-sizing: border-box;
+    padding: 50px 0 0 50px; /* Aligné en haut à gauche */
 }
 
 .brand {
-    font-family: 'PorscheDesign', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
+    font-family: var(--porsche-font);
+    font-size: 22px;
+    font-weight: normal;
     text-transform: lowercase;
+    letter-spacing: 1px;
 }
 
-/* Centrage de la grille */
-.container {
+/* Container principal pour le centrage */
+.wrapper {
+    flex: 1;
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0 40px;
 }
 
-/* Grille de 3 colonnes max - Cartes plus petites, plus d'écart */
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(3, 200px); /* 3 colonnes fixes de 200px */
-    gap: 60px; /* Écarts plus grands entre les cases */
-    margin-top: 20px;
+    /* 3 colonnes de 220px maximum */
+    grid-template-columns: repeat(3, 220px); 
+    gap: 60px; /* Espace généreux entre les cases */
 }
 
-/* Bloc Application */
 .app-item {
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* La carte carrée compacte */
 .app-card {
     background-color: var(--card-bg);
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centre verticalement le titre */
-    align-items: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 24px; /* Angles bien ronds comme demandé */
     border: var(--card-border);
-    transition: var(--transition);
-    overflow: hidden;
-    position: relative; /* Pour positionner le statut */
-}
-
-/* Style de l'indicateur ONLINE */
-.status-indicator {
-    position: absolute;
-    top: 15px;
     display: flex;
     align-items: center;
-    gap: 6px;
-}
-
-.dot {
-    width: 7px;
-    height: 7px;
-    background-color: var(--status-green);
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.status-text {
-    font-size: 0.65rem;
-    color: var(--status-green);
-    font-weight: bold;
-    letter-spacing: 0.5px;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
 }
 
 .app-title {
-    font-family: 'Segoe UI', sans-serif; /* Utilisation de Segoe UI pour le titre dans la carte pour plus de clarté, comme sur l'image */
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-main);
-    margin-top: 10px; /* Compense le positionnement du statut */
+    font-family: var(--porsche-font);
+    font-size: 1.2rem;
+    color: var(--text-primary);
 }
 
-/* Texte sous la carte */
 .app-domain {
-    font-size: 0.75rem;
     color: var(--text-secondary);
-    font-family: 'Segoe UI', sans-serif;
-    transition: var(--transition);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
 }
 
-/* Effet au survol - Pro et subtil */
+/* EFFET HOVER : La case grossit et le texte s'éclaire */
+.app-item:hover {
+    transform: scale(1.05);
+}
+
 .app-item:hover .app-card {
-    transform: translateY(-5px); /* Légère élévation au lieu de grossir */
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    background-color: #1a1a1a;
+    border-color: #333333;
 }
 
 .app-item:hover .app-domain {
-    color: var(--text-main);
+    color: #ffffff;
 }
 
-/* Responsive pour mobile */
-@media (max-width: 800px) {
+/* RESPONSIVE : Passage à 2 colonnes sur tablette/mobile */
+@media (max-width: 900px) {
     .app-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 40px;
-        width: 100%;
+        grid-template-columns: repeat(2, 180px);
+        gap: 30px;
+    }
+    .app-card {
+        width: 180px;
+        height: 180px;
     }
 }
