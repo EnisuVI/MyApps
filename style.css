@@ -1,0 +1,109 @@
+/* Import de ta police personnalisée */
+@font-face {
+    font-family: 'PorscheDesign';
+    src: url('assets/fonts/DesignSystemEW01.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #1a1a1a;
+    --text-main: #ffffff;
+    --text-secondary: #888888;
+    --border-radius: 18px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif; /* Fallback */
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header style Porsche */
+header {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 60px;
+}
+
+.brand {
+    font-family: 'PorscheDesign', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+}
+
+/* Grille de 3 colonnes max */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+    width: 100%;
+    max-width: 900px; /* Force le passage à la ligne après 3 colonnes de 250px-300px */
+}
+
+/* Bloc Application */
+.app-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.app-card {
+    background-color: var(--card-bg);
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Carré parfait */
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.app-title {
+    font-family: 'PorscheDesign', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+.app-logo {
+    width: 60%;
+    height: auto;
+    object-fit: contain;
+}
+
+.app-domain {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Effet au survol */
+.app-item:hover .app-card {
+    transform: scale(1.05);
+    border-color: #555;
+    background-color: #222;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.app-item:hover .app-domain {
+    color: var(--text-main);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 600px) {
+    .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
