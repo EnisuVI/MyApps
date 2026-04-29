@@ -78,10 +78,19 @@ header {
     align-items: center;
     gap: 10px;
     font-family: var(--font);
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
+    font-size: 0.7rem;       /* réduit — DesignSystem est une police large */
+    letter-spacing: 0.08em;  /* moins d'espacement avec cette police */
     text-transform: uppercase;
     color: var(--text);
+}
+
+.brand-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 8px var(--accent-green);
+    animation: pulse 2.4s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -90,8 +99,8 @@ header {
 }
 
 .header-meta {
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
 }
@@ -100,15 +109,15 @@ header {
 
 main {
     flex: 1;
-    padding: 72px 32px;
+    padding: 64px 32px;
     max-width: 960px;
     width: 100%;
     margin: 0 auto;
 }
 
 .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--text-muted);
     margin-bottom: 28px;
@@ -121,7 +130,7 @@ main {
 .app-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 5%;
+    gap: 16px; /* valeur fixe en px, pas en % */
 }
 
 /* ─── APP ITEM ───────────────────────────────────────── */
@@ -215,8 +224,8 @@ main {
 
 .app-title {
     font-family: var(--font);
-    font-size: 1.05rem;
-    letter-spacing: 0.06em;
+    font-size: 0.85rem;      /* réduit — DesignSystem prend beaucoup de place */
+    letter-spacing: 0.04em;  /* très peu d'espacement avec cette police */
     text-transform: uppercase;
     color: var(--text);
     position: relative;
@@ -243,10 +252,13 @@ main {
 }
 
 .app-domain {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    font-size: 0.58rem;      /* réduit — évite le débordement du texte */
+    letter-spacing: 0.05em;
     color: var(--text-muted);
     transition: color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .app-item:hover .app-domain {
@@ -256,6 +268,8 @@ main {
 .app-arrow {
     font-size: 0.65rem;
     color: var(--text-dim);
+    flex-shrink: 0;
+    margin-left: 8px;
     transition: color 0.2s, transform 0.3s var(--ease);
 }
 
@@ -275,8 +289,8 @@ footer {
 }
 
 .footer-text {
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-dim);
 }
@@ -285,11 +299,11 @@ footer {
 
 @media (max-width: 600px) {
     header { padding: 0 20px; }
-    main { padding: 48px 20px; }
+    main { padding: 40px 20px; }
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
     .app-card { padding: 16px; }
-    .app-title { font-size: 0.85rem; }
+    .app-title { font-size: 0.72rem; }
 }
