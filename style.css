@@ -1,119 +1,109 @@
-/* IMPORT DE LA POLICE TTF */
+/* Import de ta police personnalisée */
 @font-face {
     font-family: 'PorscheDesign';
-    /* Assure-toi que le fichier s'appelle EXACTEMENT comme ça dans ton dossier /fonts */
-    src: url('./fonts/DesignSystemEW01.ttf') format('truetype');
+    src: url('assets/fonts/DesignSystemEW01.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
 
 :root {
-    --bg-color: #000000;
-    --card-bg: #111111; /* Gris très sombre pour le contraste */
-    --card-border: 1px solid #222222;
-    --text-primary: #ffffff;
-    --text-secondary: #555555; /* Gris foncé pour les domaines */
-    --porsche-font: 'PorscheDesign', sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --bg-color: #0a0a0a;
+    --card-bg: #1a1a1a;
+    --text-main: #ffffff;
+    --text-secondary: #888888;
+    --border-radius: 18px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body {
     background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: sans-serif; /* Fallback */
-    height: 100vh;
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif; /* Fallback */
+    margin: 0;
+    padding: 40px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
+/* Header style Porsche */
 header {
-    padding: 50px 0 0 50px; /* Aligné en haut à gauche */
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 60px;
 }
 
 .brand {
-    font-family: var(--porsche-font);
-    font-size: 22px;
-    font-weight: normal;
-    text-transform: lowercase;
+    font-family: 'PorscheDesign', sans-serif;
+    font-size: 1.5rem;
     letter-spacing: 1px;
+    text-transform: lowercase;
 }
 
-/* Container principal pour le centrage */
-.wrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
+/* Grille de 3 colonnes max */
 .app-grid {
     display: grid;
-    /* 3 colonnes de 220px maximum */
-    grid-template-columns: repeat(3, 220px); 
-    gap: 60px; /* Espace généreux entre les cases */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+    width: 100%;
+    max-width: 900px; /* Force le passage à la ligne après 3 colonnes de 250px-300px */
 }
 
+/* Bloc Application */
 .app-item {
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    gap: 15px;
 }
 
 .app-card {
     background-color: var(--card-bg);
-    width: 220px;
-    height: 220px;
-    border-radius: 24px; /* Angles bien ronds comme demandé */
-    border: var(--card-border);
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Carré parfait */
+    border-radius: var(--border-radius);
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
+    align-items: center;
+    border: 1px solid #333;
+    transition: var(--transition);
+    overflow: hidden;
 }
 
 .app-title {
-    font-family: var(--porsche-font);
+    font-family: 'PorscheDesign', sans-serif;
     font-size: 1.2rem;
-    color: var(--text-primary);
+    color: var(--text-main);
+}
+
+.app-logo {
+    width: 60%;
+    height: auto;
+    object-fit: contain;
 }
 
 .app-domain {
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* EFFET HOVER : La case grossit et le texte s'éclaire */
-.app-item:hover {
-    transform: scale(1.05);
-}
-
+/* Effet au survol */
 .app-item:hover .app-card {
-    background-color: #1a1a1a;
-    border-color: #333333;
+    transform: scale(1.05);
+    border-color: #555;
+    background-color: #222;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .app-item:hover .app-domain {
-    color: #ffffff;
+    color: var(--text-main);
 }
 
-/* RESPONSIVE : Passage à 2 colonnes sur tablette/mobile */
-@media (max-width: 900px) {
+/* Responsive pour mobile */
+@media (max-width: 600px) {
     .app-grid {
-        grid-template-columns: repeat(2, 180px);
-        gap: 30px;
-    }
-    .app-card {
-        width: 180px;
-        height: 180px;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
