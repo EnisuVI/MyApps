@@ -1,52 +1,59 @@
-/* Import de ta police personnalisée */
+/* Import de ta police personnalisée (Porsche) */
 @font-face {
     font-family: 'PorscheDesign';
-    src: url('assets/fonts/DesignSystemEW01.ttf') format('ttf');
+    src: url('assets/fonts/DesignSystemEW01.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 :root {
-    --bg-color: #0a0a0a;
-    --card-bg: #1a1a1a;
+    --bg-color: #050505; /* Noir très profond */
+    --card-bg: #141414; /* Gris très foncé pour les cartes */
     --text-main: #ffffff;
-    --text-secondary: #888888;
-    --border-radius: 18px;
+    --text-secondary: #777777; /* Gris plus discret */
+    --status-green: #22c55e; /* Couleur du point online */
+    --border-radius: 16px;
+    --card-border: 1px solid rgba(255, 255, 255, 0.08); /* Bordure subtile */
     --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    font-family: 'Segoe UI', Roboto, sans-serif; /* Fallback */
+    font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    padding: 40px;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-/* Header style Porsche */
+/* Header style Porsche - En haut à gauche */
 header {
     width: 100%;
-    max-width: 900px;
-    margin-bottom: 60px;
+    padding: 30px 40px;
+    box-sizing: border-box;
 }
 
 .brand {
     font-family: 'PorscheDesign', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
     text-transform: lowercase;
 }
 
-/* Grille de 3 colonnes max */
+/* Centrage de la grille */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+/* Grille de 3 colonnes max - Cartes plus petites, plus d'écart */
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 40px;
-    width: 100%;
-    max-width: 900px; /* Force le passage à la ligne après 3 colonnes de 250px-300px */
+    grid-template-columns: repeat(3, 200px); /* 3 colonnes fixes de 200px */
+    gap: 60px; /* Écarts plus grands entre les cases */
+    margin-top: 20px;
 }
 
 /* Bloc Application */
@@ -55,46 +62,70 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
+/* La carte carrée compacte */
 .app-card {
     background-color: var(--card-bg);
     width: 100%;
-    aspect-ratio: 1 / 1; /* Carré parfait */
+    aspect-ratio: 1 / 1;
     border-radius: var(--border-radius);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: center; /* Centre verticalement le titre */
     align-items: center;
-    border: 1px solid #333;
+    border: var(--card-border);
     transition: var(--transition);
     overflow: hidden;
+    position: relative; /* Pour positionner le statut */
+}
+
+/* Style de l'indicateur ONLINE */
+.status-indicator {
+    position: absolute;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--status-green);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-text {
+    font-size: 0.65rem;
+    color: var(--status-green);
+    font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 .app-title {
-    font-family: 'PorscheDesign', sans-serif;
-    font-size: 1.2rem;
+    font-family: 'Segoe UI', sans-serif; /* Utilisation de Segoe UI pour le titre dans la carte pour plus de clarté, comme sur l'image */
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--text-main);
+    margin-top: 10px; /* Compense le positionnement du statut */
 }
 
-.app-logo {
-    width: 60%;
-    height: auto;
-    object-fit: contain;
-}
-
+/* Texte sous la carte */
 .app-domain {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
     font-family: 'Segoe UI', sans-serif;
+    transition: var(--transition);
 }
 
-/* Effet au survol */
+/* Effet au survol - Pro et subtil */
 .app-item:hover .app-card {
-    transform: scale(1.05);
-    border-color: #555;
-    background-color: #222;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: translateY(-5px); /* Légère élévation au lieu de grossir */
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 .app-item:hover .app-domain {
@@ -102,8 +133,10 @@ header {
 }
 
 /* Responsive pour mobile */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .app-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 40px;
+        width: 100%;
     }
 }
