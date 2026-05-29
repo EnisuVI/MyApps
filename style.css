@@ -7,14 +7,14 @@
 }
 
 :root {
-    --bg:           #141414;
-    --surface:      #1c1c1c;
-    --surface-h:    #222222;
-    --border:       rgba(255,255,255,0.07);
-    --border-h:     rgba(255,255,255,0.14);
-    --text:         #f0ede8;
-    --text-muted:   #666;
-    --text-dim:     #3a3a3a;
+    --bg:           #f4f2ee;
+    --surface:      #ffffff;
+    --surface-h:    #f9f8f6;
+    --border:       rgba(0,0,0,0.08);
+    --border-h:     rgba(0,0,0,0.15);
+    --text:         #161616;
+    --text-muted:   #aaa;
+    --text-dim:     #ddd;
     --font-serif:   'DM Serif Display', Georgia, serif;
     --font-sans:    'DM Sans', 'Helvetica Neue', sans-serif;
     --ease:         cubic-bezier(0.23, 1, 0.32, 1);
@@ -44,7 +44,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(20, 20, 20, 0.92);
+    background: rgba(244, 242, 238, 0.93);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -52,14 +52,13 @@ header {
 .brand {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1.25rem;
-    letter-spacing: 0.01em;
+    font-size: 1.2rem;
     color: var(--text);
 }
 
 .header-right {
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 300;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -70,7 +69,7 @@ header {
 
 main {
     flex: 1;
-    padding: 56px 52px 80px;
+    padding: 52px 52px 80px;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
@@ -81,8 +80,7 @@ main {
 .app-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 2px;
-    border: 1px solid var(--border);
+    gap: 20px;
 }
 
 /* ─── APP ITEM ───────────────────────────────────────── */
@@ -92,77 +90,70 @@ main {
     display: flex;
     flex-direction: column;
     background: var(--surface);
-    transition: background 0.25s var(--ease);
-    animation: fadeIn 0.5s var(--ease) both;
-    position: relative;
-}
-
-.app-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+    animation: fadeUp 0.45s var(--ease) both;
 }
 
 .app-item:hover {
-    background: var(--surface-h);
-    z-index: 1;
+    border-color: var(--border-h);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+    transform: translateY(-2px);
 }
 
-.app-item:nth-child(1)  { animation-delay: 0.02s; }
-.app-item:nth-child(2)  { animation-delay: 0.04s; }
-.app-item:nth-child(3)  { animation-delay: 0.06s; }
-.app-item:nth-child(4)  { animation-delay: 0.08s; }
-.app-item:nth-child(5)  { animation-delay: 0.10s; }
-.app-item:nth-child(6)  { animation-delay: 0.12s; }
-.app-item:nth-child(7)  { animation-delay: 0.14s; }
-.app-item:nth-child(8)  { animation-delay: 0.16s; }
-.app-item:nth-child(9)  { animation-delay: 0.18s; }
-.app-item:nth-child(10) { animation-delay: 0.20s; }
-.app-item:nth-child(11) { animation-delay: 0.22s; }
-.app-item:nth-child(12) { animation-delay: 0.24s; }
-.app-item:nth-child(13) { animation-delay: 0.26s; }
+.app-item:nth-child(1)  { animation-delay: 0.03s; }
+.app-item:nth-child(2)  { animation-delay: 0.06s; }
+.app-item:nth-child(3)  { animation-delay: 0.09s; }
+.app-item:nth-child(4)  { animation-delay: 0.12s; }
+.app-item:nth-child(5)  { animation-delay: 0.15s; }
+.app-item:nth-child(6)  { animation-delay: 0.18s; }
+.app-item:nth-child(7)  { animation-delay: 0.21s; }
+.app-item:nth-child(8)  { animation-delay: 0.24s; }
+.app-item:nth-child(9)  { animation-delay: 0.27s; }
+.app-item:nth-child(10) { animation-delay: 0.30s; }
+.app-item:nth-child(11) { animation-delay: 0.33s; }
+.app-item:nth-child(12) { animation-delay: 0.36s; }
+.app-item:nth-child(13) { animation-delay: 0.39s; }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ─── CARD BODY ──────────────────────────────────────── */
 
 .app-card {
     flex: 1;
-    padding: 28px 26px 20px;
+    padding: 22px 22px 16px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    min-height: 120px;
+    gap: 20px;
+    min-height: 110px;
 }
 
 .app-index {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     font-weight: 400;
     letter-spacing: 0.1em;
     color: var(--text-dim);
-    margin-bottom: auto;
-    padding-bottom: 18px;
 }
 
 .app-title {
     font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 400;
     color: var(--text);
     line-height: 1.2;
-    letter-spacing: 0.01em;
+    margin-top: auto;
 }
 
 /* ─── FOOTER STRIP ───────────────────────────────────── */
 
 .app-footer {
-    padding: 11px 26px 16px;
+    padding: 10px 22px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -173,7 +164,7 @@ main {
     font-family: var(--font-sans);
     font-size: 0.6rem;
     font-weight: 300;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     color: var(--text-muted);
     white-space: nowrap;
     overflow: hidden;
@@ -181,7 +172,7 @@ main {
     transition: color 0.2s;
 }
 
-.app-item:hover .app-domain { color: #888; }
+.app-item:hover .app-domain { color: #666; }
 
 .app-arrow {
     font-size: 0.6rem;
@@ -219,7 +210,7 @@ footer {
 @media (max-width: 640px) {
     header { padding: 0 20px; }
     main { padding: 32px 16px 60px; }
-    .app-grid { grid-template-columns: repeat(2, 1fr); }
-    .app-card { min-height: 100px; padding: 20px 18px 14px; }
+    .app-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .app-card { min-height: 90px; padding: 16px 16px 12px; }
     .app-title { font-size: 1rem; }
 }
