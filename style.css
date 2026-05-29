@@ -5,6 +5,8 @@
     font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -12,16 +14,16 @@
 }
 
 :root {
-    --bg:             #f5f6f8;
-    --surface:        #ffffff;
-    --surface-hover:  #f0f2f5;
-    --border:         rgba(0, 0, 0, 0.07);
-    --border-hover:   rgba(0, 0, 0, 0.14);
-    --text:           #111318;
-    --text-muted:     #8a919e;
-    --text-dim:       #c2c8d0;
-    --accent:         #111318;
-    --font: 'DesignSystem', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --bg:            #f7f6f3;
+    --surface:       #ffffff;
+    --surface-hover: #fafaf8;
+    --border:        rgba(0, 0, 0, 0.09);
+    --border-hover:  rgba(0, 0, 0, 0.18);
+    --text:          #1a1a1a;
+    --text-muted:    #999;
+    --text-dim:      #ccc;
+    --font-display:  'Playfair Display', Georgia, serif;
+    --font-ui:       'Inter', 'Helvetica Neue', sans-serif;
     --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -32,7 +34,7 @@ html, body {
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: var(--font);
+    font-family: var(--font-ui);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     display: flex;
@@ -45,38 +47,32 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
-    height: 52px;
+    padding: 0 48px;
+    height: 56px;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(245, 246, 248, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(247, 246, 243, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .brand {
-    font-family: var(--font);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
     color: var(--text);
-}
-
-.header-meta {
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-style: italic;
 }
 
 /* ─── MAIN ───────────────────────────────────────────── */
 
 main {
     flex: 1;
-    padding: 36px 40px;
-    max-width: 1100px;
+    padding: 56px 48px 80px;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
 }
@@ -85,8 +81,8 @@ main {
 
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
 }
 
 /* ─── APP ITEM ───────────────────────────────────────── */
@@ -95,7 +91,7 @@ main {
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    animation: fadeUp 0.4s var(--ease) both;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .app-item:nth-child(1)  { animation-delay: 0.03s; }
@@ -113,43 +109,42 @@ main {
 .app-item:nth-child(13) { animation-delay: 0.39s; }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 .app-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px 8px 0 0;
-    height: 100px;
+    border-radius: 4px 4px 0 0;
+    height: 110px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 14px 16px;
+    padding: 16px 18px;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
 .app-item:hover .app-card {
-    background: var(--surface-hover);
     border-color: var(--border-hover);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
 .app-icon {
     position: absolute;
-    top: 14px;
-    left: 16px;
-    width: 20px;
-    height: 20px;
-    opacity: 0.12;
-    transition: opacity 0.25s var(--ease);
+    top: 16px;
+    left: 18px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.1;
+    transition: opacity 0.3s var(--ease);
 }
 
 .app-item:hover .app-icon {
-    opacity: 0.3;
+    opacity: 0.25;
 }
 
 .app-icon svg {
@@ -158,10 +153,10 @@ main {
 }
 
 .app-title {
-    font-family: var(--font);
-    font-size: 0.78rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
     color: var(--text);
     position: relative;
     z-index: 1;
@@ -174,23 +169,25 @@ main {
     background: var(--surface);
     border: 1px solid var(--border);
     border-top: 1px solid var(--border);
-    border-radius: 0 0 8px 8px;
-    padding: 8px 16px;
+    border-radius: 0 0 4px 4px;
+    padding: 9px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
     margin-top: -1px;
 }
 
 .app-item:hover .app-footer {
-    background: var(--surface-hover);
     border-color: var(--border-hover);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
 .app-domain {
-    font-size: 0.56rem;
-    letter-spacing: 0.04em;
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
     color: var(--text-muted);
     transition: color 0.2s;
     white-space: nowrap;
@@ -203,11 +200,12 @@ main {
 }
 
 .app-arrow {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     color: var(--text-dim);
     flex-shrink: 0;
     margin-left: 6px;
-    transition: color 0.2s, transform 0.25s var(--ease);
+    transition: color 0.2s, transform 0.3s var(--ease);
+    font-family: var(--font-ui);
 }
 
 .app-item:hover .app-arrow {
@@ -218,7 +216,7 @@ main {
 /* ─── PAGE FOOTER ────────────────────────────────────── */
 
 footer {
-    padding: 20px 40px;
+    padding: 24px 48px;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -226,8 +224,10 @@ footer {
 }
 
 .footer-text {
-    font-size: 0.52rem;
-    letter-spacing: 0.12em;
+    font-family: var(--font-ui);
+    font-size: 0.55rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-dim);
 }
@@ -235,12 +235,12 @@ footer {
 /* ─── RESPONSIVE ─────────────────────────────────────── */
 
 @media (max-width: 600px) {
-    header { padding: 0 20px; }
-    main { padding: 24px 16px; }
+    header { padding: 0 24px; }
+    main { padding: 36px 20px 60px; }
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        gap: 16px;
     }
-    .app-card { height: 80px; padding: 12px 14px; }
-    .app-title { font-size: 0.68rem; }
+    .app-card { height: 90px; padding: 14px 16px; }
+    .app-title { font-size: 0.9rem; }
 }
