@@ -1,11 +1,4 @@
-@font-face {
-    font-family: 'DesignSystem';
-    src: url('assets/fonts/DesignSystem.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap');
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -14,22 +7,19 @@
 }
 
 :root {
-    --bg:            #f7f6f3;
+    --bg:            #f2f1ee;
     --surface:       #ffffff;
-    --surface-hover: #fafaf8;
-    --border:        rgba(0, 0, 0, 0.09);
-    --border-hover:  rgba(0, 0, 0, 0.18);
-    --text:          #1a1a1a;
-    --text-muted:    #999;
-    --text-dim:      #ccc;
+    --border:        rgba(0, 0, 0, 0.08);
+    --border-hover:  rgba(0, 0, 0, 0.16);
+    --text:          #141414;
+    --text-muted:    #888;
+    --text-dim:      #bbb;
     --font-display:  'Playfair Display', Georgia, serif;
     --font-ui:       'Inter', 'Helvetica Neue', sans-serif;
     --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-html, body {
-    height: 100%;
-}
+html, body { height: 100%; }
 
 body {
     background-color: var(--bg);
@@ -46,32 +36,31 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 48px;
-    height: 56px;
+    padding: 0 52px;
+    height: 58px;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(247, 246, 243, 0.92);
+    background: rgba(242, 241, 238, 0.93);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 
 .brand {
     font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 400;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-style: italic;
     letter-spacing: 0.01em;
     color: var(--text);
-    font-style: italic;
 }
 
 /* ─── MAIN ───────────────────────────────────────────── */
 
 main {
     flex: 1;
-    padding: 56px 48px 80px;
+    padding: 52px 52px 80px;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
@@ -81,17 +70,27 @@ main {
 
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
 }
 
 /* ─── APP ITEM ───────────────────────────────────────── */
 
 .app-item {
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
     animation: fadeUp 0.5s var(--ease) both;
+}
+
+.app-item:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.09);
+    transform: translateY(-2px);
 }
 
 .app-item:nth-child(1)  { animation-delay: 0.03s; }
@@ -109,103 +108,77 @@ main {
 .app-item:nth-child(13) { animation-delay: 0.39s; }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.app-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px 4px 0 0;
-    height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 16px 18px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
+/* ─── COLOR BAND ─────────────────────────────────────── */
 
-.app-item:hover .app-card {
-    border-color: var(--border-hover);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-}
-
-.app-icon {
-    position: absolute;
-    top: 16px;
-    left: 18px;
-    width: 18px;
-    height: 18px;
-    opacity: 0.1;
-    transition: opacity 0.3s var(--ease);
-}
-
-.app-item:hover .app-icon {
-    opacity: 0.25;
-}
-
-.app-icon svg {
+.app-band {
+    height: 6px;
     width: 100%;
-    height: 100%;
+}
+
+/* couleurs par app */
+.app-item[data-app="github"]      .app-band { background: #24292e; }
+.app-item[data-app="drive"]       .app-band { background: #4A90D9; }
+.app-item[data-app="status"]      .app-band { background: #27ae60; }
+.app-item[data-app="oracle"]      .app-band { background: #C0392B; }
+.app-item[data-app="aws"]         .app-band { background: #FF9900; }
+.app-item[data-app="radio"]       .app-band { background: #8e44ad; }
+.app-item[data-app="resistor"]    .app-band { background: #e67e22; }
+.app-item[data-app="svg"]         .app-band { background: #16a085; }
+.app-item[data-app="myconverter"] .app-band { background: #2980b9; }
+.app-item[data-app="mycompressor"].app-band { background: #c0392b; }
+.app-item[data-app="colors"]      .app-band { background: linear-gradient(90deg, #e74c3c, #f39c12, #2ecc71, #3498db, #9b59b6); }
+.app-item[data-app="qr"]          .app-band { background: #1a1a1a; }
+.app-item[data-app="pswdgen"]     .app-band { background: #00b894; }
+
+/* ─── CARD BODY ──────────────────────────────────────── */
+
+.app-card {
+    padding: 20px 20px 14px;
 }
 
 .app-title {
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.05rem;
+    font-weight: 600;
     letter-spacing: 0.01em;
     color: var(--text);
-    position: relative;
-    z-index: 1;
-    line-height: 1.2;
+    line-height: 1.25;
+    margin-bottom: 10px;
 }
 
 /* ─── FOOTER STRIP ───────────────────────────────────── */
 
 .app-footer {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    padding: 10px 20px;
     border-top: 1px solid var(--border);
-    border-radius: 0 0 4px 4px;
-    padding: 9px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-    margin-top: -1px;
-}
-
-.app-item:hover .app-footer {
-    border-color: var(--border-hover);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
 .app-domain {
     font-family: var(--font-ui);
-    font-size: 0.62rem;
-    font-weight: 300;
-    letter-spacing: 0.03em;
+    font-size: 0.63rem;
+    font-weight: 400;
     color: var(--text-muted);
-    transition: color 0.2s;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.2s;
 }
 
-.app-item:hover .app-domain {
-    color: var(--text);
-}
+.app-item:hover .app-domain { color: var(--text); }
 
 .app-arrow {
     font-size: 0.65rem;
     color: var(--text-dim);
     flex-shrink: 0;
-    margin-left: 6px;
+    margin-left: 8px;
     transition: color 0.2s, transform 0.3s var(--ease);
-    font-family: var(--font-ui);
 }
 
 .app-item:hover .app-arrow {
@@ -216,7 +189,7 @@ main {
 /* ─── PAGE FOOTER ────────────────────────────────────── */
 
 footer {
-    padding: 24px 48px;
+    padding: 24px 52px;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -224,9 +197,8 @@ footer {
 }
 
 .footer-text {
-    font-family: var(--font-ui);
     font-size: 0.55rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-dim);
@@ -234,13 +206,9 @@ footer {
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
 
-@media (max-width: 600px) {
-    header { padding: 0 24px; }
-    main { padding: 36px 20px 60px; }
-    .app-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-    .app-card { height: 90px; padding: 14px 16px; }
-    .app-title { font-size: 0.9rem; }
+@media (max-width: 640px) {
+    header { padding: 0 20px; }
+    main { padding: 32px 16px 60px; }
+    .app-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .app-title { font-size: 0.95rem; }
 }
