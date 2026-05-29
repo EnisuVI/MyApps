@@ -12,17 +12,15 @@
 }
 
 :root {
-    --bg: #0d0f10;
-    --surface: #131618;
-    --surface-hover: #1a1d20;
-    --border: rgba(255, 255, 255, 0.06);
-    --border-hover: rgba(255, 255, 255, 0.12);
-    --text: #e8eaed;
-    --text-muted: #4a5058;
-    --text-dim: #2e333a;
-    --accent-green: #00e676;
-    --accent-blue: #4fc3f7;
-    --accent-purple: #b388ff;
+    --bg:             #f5f6f8;
+    --surface:        #ffffff;
+    --surface-hover:  #f0f2f5;
+    --border:         rgba(0, 0, 0, 0.07);
+    --border-hover:   rgba(0, 0, 0, 0.14);
+    --text:           #111318;
+    --text-muted:     #8a919e;
+    --text-dim:       #c2c8d0;
+    --accent:         #111318;
     --font: 'DesignSystem', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -41,61 +39,29 @@ body {
     flex-direction: column;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.03) 2px,
-        rgba(0, 0, 0, 0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 100;
-}
-
 /* ─── HEADER ─────────────────────────────────────────── */
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
-    height: 56px;
+    padding: 0 40px;
+    height: 52px;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(13, 15, 16, 0.85);
+    background: rgba(245, 246, 248, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     font-family: var(--font);
-    font-size: 0.7rem;       /* réduit — DesignSystem est une police large */
-    letter-spacing: 0.08em;  /* moins d'espacement avec cette police */
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text);
-}
-
-.brand-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-green);
-    box-shadow: 0 0 8px var(--accent-green);
-    animation: pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
 }
 
 .header-meta {
@@ -109,28 +75,18 @@ header {
 
 main {
     flex: 1;
-    padding: 64px 32px;
-    max-width: 960px;
+    padding: 36px 40px;
+    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-}
-
-.section-label {
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 28px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
 }
 
 /* ─── GRID ───────────────────────────────────────────── */
 
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px; /* valeur fixe en px, pas en % */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
 }
 
 /* ─── APP ITEM ───────────────────────────────────────── */
@@ -139,82 +95,61 @@ main {
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    animation: fadeUp 0.5s var(--ease) both;
+    animation: fadeUp 0.4s var(--ease) both;
 }
 
-.app-item:nth-child(1) { animation-delay: 0.05s; }
-.app-item:nth-child(2) { animation-delay: 0.1s; }
-.app-item:nth-child(3) { animation-delay: 0.15s; }
-.app-item:nth-child(4) { animation-delay: 0.2s; }
+.app-item:nth-child(1)  { animation-delay: 0.03s; }
+.app-item:nth-child(2)  { animation-delay: 0.06s; }
+.app-item:nth-child(3)  { animation-delay: 0.09s; }
+.app-item:nth-child(4)  { animation-delay: 0.12s; }
+.app-item:nth-child(5)  { animation-delay: 0.15s; }
+.app-item:nth-child(6)  { animation-delay: 0.18s; }
+.app-item:nth-child(7)  { animation-delay: 0.21s; }
+.app-item:nth-child(8)  { animation-delay: 0.24s; }
+.app-item:nth-child(9)  { animation-delay: 0.27s; }
+.app-item:nth-child(10) { animation-delay: 0.30s; }
+.app-item:nth-child(11) { animation-delay: 0.33s; }
+.app-item:nth-child(12) { animation-delay: 0.36s; }
+.app-item:nth-child(13) { animation-delay: 0.39s; }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(14px); }
+    from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 .app-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px 10px 0 0;
-    aspect-ratio: 4 / 3;
+    border-radius: 8px 8px 0 0;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 24px;
+    padding: 14px 16px;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
-}
-
-.app-card::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 1px;
-    height: 40%;
-    background: linear-gradient(to bottom, transparent, var(--card-accent, var(--accent-blue)));
-    opacity: 0;
-    transition: opacity 0.4s var(--ease);
-}
-
-.app-card::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    height: 1px;
-    width: 40%;
-    background: linear-gradient(to left, transparent, var(--card-accent, var(--accent-blue)));
-    opacity: 0;
-    transition: opacity 0.4s var(--ease);
+    transition: border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 .app-item:hover .app-card {
     background: var(--surface-hover);
     border-color: var(--border-hover);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
-
-.app-item:hover .app-card::before,
-.app-item:hover .app-card::after {
-    opacity: 1;
-}
-
-.app-item[data-app="drive"] .app-card   { --card-accent: var(--accent-blue); }
-.app-item[data-app="status"] .app-card  { --card-accent: var(--accent-green); }
-.app-item[data-app="mail"] .app-card    { --card-accent: var(--accent-purple); }
 
 .app-icon {
     position: absolute;
-    top: 24px;
-    left: 24px;
-    width: 28px;
-    height: 28px;
-    opacity: 0.15;
-    transition: opacity 0.3s var(--ease);
+    top: 14px;
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.12;
+    transition: opacity 0.25s var(--ease);
 }
 
 .app-item:hover .app-icon {
-    opacity: 0.35;
+    opacity: 0.3;
 }
 
 .app-icon svg {
@@ -224,12 +159,13 @@ main {
 
 .app-title {
     font-family: var(--font);
-    font-size: 0.85rem;      /* réduit — DesignSystem prend beaucoup de place */
-    letter-spacing: 0.04em;  /* très peu d'espacement avec cette police */
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
     color: var(--text);
     position: relative;
     z-index: 1;
+    line-height: 1.2;
 }
 
 /* ─── FOOTER STRIP ───────────────────────────────────── */
@@ -237,23 +173,24 @@ main {
 .app-footer {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 1px solid var(--border-hover);
-    border-radius: 0 0 10px 10px;
-    padding: 11px 24px;
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 8px 8px;
+    padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background 0.3s var(--ease);
+    transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
     margin-top: -1px;
 }
 
 .app-item:hover .app-footer {
     background: var(--surface-hover);
+    border-color: var(--border-hover);
 }
 
 .app-domain {
-    font-size: 0.58rem;      /* réduit — évite le débordement du texte */
-    letter-spacing: 0.05em;
+    font-size: 0.56rem;
+    letter-spacing: 0.04em;
     color: var(--text-muted);
     transition: color 0.2s;
     white-space: nowrap;
@@ -266,11 +203,11 @@ main {
 }
 
 .app-arrow {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: var(--text-dim);
     flex-shrink: 0;
-    margin-left: 8px;
-    transition: color 0.2s, transform 0.3s var(--ease);
+    margin-left: 6px;
+    transition: color 0.2s, transform 0.25s var(--ease);
 }
 
 .app-item:hover .app-arrow {
@@ -281,7 +218,7 @@ main {
 /* ─── PAGE FOOTER ────────────────────────────────────── */
 
 footer {
-    padding: 24px 32px;
+    padding: 20px 40px;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -289,7 +226,7 @@ footer {
 }
 
 .footer-text {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-dim);
@@ -299,11 +236,11 @@ footer {
 
 @media (max-width: 600px) {
     header { padding: 0 20px; }
-    main { padding: 40px 20px; }
+    main { padding: 24px 16px; }
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 8px;
     }
-    .app-card { padding: 16px; }
-    .app-title { font-size: 0.72rem; }
+    .app-card { height: 80px; padding: 12px 14px; }
+    .app-title { font-size: 0.68rem; }
 }
